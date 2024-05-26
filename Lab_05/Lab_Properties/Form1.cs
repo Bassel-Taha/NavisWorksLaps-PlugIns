@@ -21,7 +21,7 @@ namespace Lab_Properties
         private void button1_Click(object sender, EventArgs e)
         {
             var path = "C:\\Users\\basse\\Desktop\\prop.txt";
-            var output = DumpProperties.OutPut;
+            var output = ElementsProperties.OutPut;
             File.WriteAllText(path, output);
         }
 

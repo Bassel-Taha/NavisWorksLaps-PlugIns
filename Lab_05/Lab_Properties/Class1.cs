@@ -51,9 +51,9 @@ namespace Lab_Properties
                         //The tooltip for the item in the ribbon
                        DisplayName = "Dump Properties")]
                         //Display name for the Plugin in the Ribbon
-    public class DumpProperties : AddInPlugin
+    public class ElementsProperties : AddInPlugin
     {
-
+        //prop to send the output to the form
         public static string OutPut { get; set; }
 
         public override int Execute(params string[] parameters)
@@ -62,7 +62,7 @@ namespace Lab_Properties
                 
             if(oDoc.CurrentSelection.SelectedItems.Count >0)
             {
-                StringBuilder output = new StringBuilder(1000); 
+                StringBuilder output = new StringBuilder(); 
                 output.Append("Dump Property Category of Current Selected Item\n");   
                 //dump the first item only
                 ModelItem oItem = oDoc.CurrentSelection.SelectedItems[0];

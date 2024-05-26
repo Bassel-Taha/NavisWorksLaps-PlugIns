@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssistantFuncs.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="ElementsProperties.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

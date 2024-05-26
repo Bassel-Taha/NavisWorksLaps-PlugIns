@@ -28,58 +28,132 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.PropsText = new System.Windows.Forms.RichTextBox();
+            this.ExportButton = new System.Windows.Forms.Button();
+            this.OK = new System.Windows.Forms.Button();
+            this.CatDisplayNameTextBox = new System.Windows.Forms.TextBox();
+            this.PropDisplayNameTextBox = new System.Windows.Forms.TextBox();
+            this.CatDisplayName = new System.Windows.Forms.Label();
+            this.PropDisplayName = new System.Windows.Forms.Label();
+            this.PropertiesOfSelectedElement = new System.Windows.Forms.Label();
+            this.Find = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // PropsText
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(23, 12);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(350, 356);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
-            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            this.PropsText.Location = new System.Drawing.Point(23, 33);
+            this.PropsText.Name = "PropsText";
+            this.PropsText.Size = new System.Drawing.Size(350, 148);
+            this.PropsText.TabIndex = 4;
+            this.PropsText.Text = "";
+            this.PropsText.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
-            // button1
+            // ExportButton
             // 
-            this.button1.Location = new System.Drawing.Point(58, 384);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 39);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Export to TXT file";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.ExportButton.Location = new System.Drawing.Point(47, 314);
+            this.ExportButton.Name = "ExportButton";
+            this.ExportButton.Size = new System.Drawing.Size(76, 39);
+            this.ExportButton.TabIndex = 3;
+            this.ExportButton.Text = "Export to TXT file";
+            this.ExportButton.UseVisualStyleBackColor = true;
+            this.ExportButton.Click += new System.EventHandler(this.Export_Click);
             // 
-            // button2
+            // OK
             // 
-            this.button2.Location = new System.Drawing.Point(225, 392);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "OK";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button1_Click);
+            this.OK.Location = new System.Drawing.Point(259, 314);
+            this.OK.Name = "OK";
+            this.OK.Size = new System.Drawing.Size(74, 39);
+            this.OK.TabIndex = 3;
+            this.OK.Text = "OK";
+            this.OK.UseVisualStyleBackColor = true;
+            this.OK.Click += new System.EventHandler(this.OK_Click);
+            // 
+            // CatDisplayNameTextBox
+            // 
+            this.CatDisplayNameTextBox.Location = new System.Drawing.Point(34, 236);
+            this.CatDisplayNameTextBox.Name = "CatDisplayNameTextBox";
+            this.CatDisplayNameTextBox.Size = new System.Drawing.Size(100, 20);
+            this.CatDisplayNameTextBox.TabIndex = 5;
+            this.CatDisplayNameTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // PropDisplayNameTextBox
+            // 
+            this.PropDisplayNameTextBox.Location = new System.Drawing.Point(243, 236);
+            this.PropDisplayNameTextBox.Name = "PropDisplayNameTextBox";
+            this.PropDisplayNameTextBox.Size = new System.Drawing.Size(100, 20);
+            this.PropDisplayNameTextBox.TabIndex = 5;
+            // 
+            // CatDisplayName
+            // 
+            this.CatDisplayName.AutoSize = true;
+            this.CatDisplayName.Location = new System.Drawing.Point(31, 211);
+            this.CatDisplayName.Name = "CatDisplayName";
+            this.CatDisplayName.Size = new System.Drawing.Size(114, 13);
+            this.CatDisplayName.TabIndex = 6;
+            this.CatDisplayName.Text = "Category DisplayName";
+            this.CatDisplayName.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // PropDisplayName
+            // 
+            this.PropDisplayName.AutoSize = true;
+            this.PropDisplayName.Location = new System.Drawing.Point(240, 211);
+            this.PropDisplayName.Name = "PropDisplayName";
+            this.PropDisplayName.Size = new System.Drawing.Size(108, 13);
+            this.PropDisplayName.TabIndex = 6;
+            this.PropDisplayName.Text = "PropertyDisplayName";
+            this.PropDisplayName.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // PropertiesOfSelectedElement
+            // 
+            this.PropertiesOfSelectedElement.AutoSize = true;
+            this.PropertiesOfSelectedElement.Location = new System.Drawing.Point(31, 9);
+            this.PropertiesOfSelectedElement.Name = "PropertiesOfSelectedElement";
+            this.PropertiesOfSelectedElement.Size = new System.Drawing.Size(189, 13);
+            this.PropertiesOfSelectedElement.TabIndex = 6;
+            this.PropertiesOfSelectedElement.Text = "All Properties OF the Selected Element";
+            this.PropertiesOfSelectedElement.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // Find
+            // 
+            this.Find.Location = new System.Drawing.Point(146, 263);
+            this.Find.Name = "Find";
+            this.Find.Size = new System.Drawing.Size(74, 39);
+            this.Find.TabIndex = 3;
+            this.Find.Text = "Find Property";
+            this.Find.UseVisualStyleBackColor = true;
+            this.Find.Click += new System.EventHandler(this.Find_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 433);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(389, 369);
+            this.Controls.Add(this.PropDisplayName);
+            this.Controls.Add(this.PropertiesOfSelectedElement);
+            this.Controls.Add(this.CatDisplayName);
+            this.Controls.Add(this.PropDisplayNameTextBox);
+            this.Controls.Add(this.CatDisplayNameTextBox);
+            this.Controls.Add(this.PropsText);
+            this.Controls.Add(this.Find);
+            this.Controls.Add(this.OK);
+            this.Controls.Add(this.ExportButton);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.RichTextBox PropsText;
+        private System.Windows.Forms.Button ExportButton;
+        private System.Windows.Forms.Button OK;
+        private System.Windows.Forms.TextBox CatDisplayNameTextBox;
+        private System.Windows.Forms.TextBox PropDisplayNameTextBox;
+        private System.Windows.Forms.Label CatDisplayName;
+        private System.Windows.Forms.Label PropDisplayName;
+        private System.Windows.Forms.Label PropertiesOfSelectedElement;
+        private System.Windows.Forms.Button Find;
     }
 }

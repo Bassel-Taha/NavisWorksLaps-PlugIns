@@ -2,6 +2,7 @@
 using Autodesk.Navisworks.Api;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -112,10 +113,11 @@ namespace Lab_Properties
             }
             else
             {
-                output.Append("Cannot find a category by display name = \"Item\"\n");
+                output.Append($"Cannot find a category by display name = \"{catDisplayName}\"\n");
             }
             return output.ToString();
         }
+
 
         public static string FindPropertyByDisplayName(ModelItem modelItem, string propDisplayName)
         {
@@ -127,14 +129,21 @@ namespace Lab_Properties
                 if (oDP_Layer != null)
                 {
                     output.Append($"Found a data property by display name = \"{propDisplayName}\" Value: " + oDP_Layer.Value.ToDisplayString() + "\n");
-                }
-                else
-                {
-                    output.Append($"Cannot find a data property by display name = \"{propDisplayName}\" in the propCatigury by displayname = {catDisplayName}\n");
+                    return output.ToString();
                 }
             }
+
+            return output.Append(
+                $"Cannot find a data property by display name = \"{propDisplayName}\" in any property Category\n").ToString();
             
-            return output.ToString();
+        }
+
+
+        public static void ExportIntoTextFile(string output)
+        {
+            var path = "C:\\Users\\basse\\Desktop\\prop.txt";
+            File.WriteAllText(path, output);
+            MessageBox.Show("the Properties is exported succesfully on the disktop");
         }
 
 

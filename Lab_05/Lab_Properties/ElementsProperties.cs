@@ -47,18 +47,21 @@ namespace Lab_Properties
                         //Plugin name
                         "ADSK",
                         //Developer ID or GUID
-                        ToolTip = "Dump Properties",
+                        ToolTip = "Element's Properties",
                         //The tooltip for the item in the ribbon
-                       DisplayName = "Dump Properties")]
+                       DisplayName = "Element's Properties")]
                         //Display name for the Plugin in the Ribbon
     public class ElementsProperties : AddInPlugin
     {
         //prop to send the output to the form
         public static string OutPut { get; set; }
 
+        //the selected modelItem
+        public static ModelItem SelectedModelItem { get; set; }
+
         public override int Execute(params string[] parameters)
         {
-            #region MyRegion internal name and Display name 
+            #region internal name and Display name 
 
 
 
@@ -134,13 +137,14 @@ namespace Lab_Properties
                 output.Append("Dump Property Category of Current Selected Item\n");
                 //dump the first item only
                 ModelItem oItem = oDoc.CurrentSelection.SelectedItems[0];
+                SelectedModelItem = oItem;
                 foreach (PropertyCategory oPC in oItem.PropertyCategories)
                 {
-                    output.Append(" Display Name: " + oPC.DisplayName + "\n");
+                    output.Append(" Category Display Name: " + oPC.DisplayName + "\n");
                     output.Append("    Properties\n");
                     foreach (DataProperty oDP in oPC.Properties)
                     {
-                        output.Append("     [Display Name]: " + oDP.DisplayName  +"=>");
+                        output.Append("     [Display Name]: " + oDP.DisplayName  +"  =>  ");
                         if (oDP.Value.IsDisplayString)
                         {
                             output.Append("[Value]: " + oDP.Value.ToString() + "\n");
@@ -162,7 +166,7 @@ namespace Lab_Properties
 
                 var propbox = new Form1();
 
-                propbox.Controls["richTextBox1"].Text = output.ToString();
+                propbox.Controls["PropsText"].Text = output.ToString();
 
                 propbox.Show();
 
@@ -171,30 +175,6 @@ namespace Lab_Properties
             return 0;
         }
 
-        internal string FindPropertyByDisplayName(ModelItem modelItem,string displayName)
-        {
-            StringBuilder output = new StringBuilder();
-            //find specific category:
-            PropertyCategory oPC_Item = modelItem.PropertyCategories.FindCategoryByDisplayName("Item");
-            if (oPC_Item != null)
-            {
-                output.Append("Found a category by display name = \"Item\" Properties Count: " + oPC_Item.Properties.Count + "\n");
-                DataProperty oDP_Layer = modelItem.PropertyCategories.FindPropertyByDisplayName("Item", "Layer");
-                if (oPC_Item != null)
-                {
-                    output.Append("Found a data property by display name = \"Item,Layer\" Value: " + oDP_Layer.Value.ToDisplayString() + "\n");
-                }
-                else
-                {
-                    output.Append("Cannot find a data property by display name = \"Item,Layer\"\n");
-                }
-            }
-            else
-            {
-                output.Append("Cannot find a category by display name = \"Item\"\n");
-            }
-            return output.ToString();
-        }
     }
    #endregion 
 

@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -55,13 +56,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Lab_04\Lab_Model\Lab_Model.csproj">
+      <Project>{6F92CA30-B37D-4865-A341-51924B87107B}</Project>
+      <Name>Lab_Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>IF EXIST "C:\Program Files\Autodesk\Navisworks Manage 2016\Plugins\$(TargetName)\" rmdir /S /Q "C:\Program Files\Autodesk\Navisworks Manage 2016\Plugins\$(TargetName)\"
+    <PostBuildEvent>IF EXIST "C:\Program Files\Autodesk\Navisworks Manage 2024\Plugins\$(TargetName)\" rmdir /S /Q "C:\Program Files\Autodesk\Navisworks Manage 2024\Plugins\$(TargetName)\"
 
-xcopy /Y "$(TargetDir)*.*" "C:\Program Files\Autodesk\Navisworks Manage 2016\Plugins\$(TargetName)\"</PostBuildEvent>
+xcopy /Y "$(TargetDir)*.*" "C:\Program Files\Autodesk\Navisworks Manage 2024\Plugins\$(TargetName)\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

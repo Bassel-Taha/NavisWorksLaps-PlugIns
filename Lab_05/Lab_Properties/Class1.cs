@@ -24,6 +24,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,7 +43,7 @@ using Autodesk.Navisworks.Api.Plugins;
 namespace Lab_Properties
 {    
     #region "Properties"
-        [PluginAttribute("DumpProperties",
+        [PluginAttribute("Element's Properties",
                         //Plugin name
                         "ADSK",
                         //Developer ID or GUID
@@ -52,6 +53,9 @@ namespace Lab_Properties
                         //Display name for the Plugin in the Ribbon
     public class DumpProperties : AddInPlugin
     {
+
+        public static string OutPut { get; set; }
+
         public override int Execute(params string[] parameters)
         {                 
             Document oDoc = Autodesk.Navisworks.Api.Application.ActiveDocument;
@@ -104,10 +108,23 @@ namespace Lab_Properties
                     output.Append("Cannot find a category by display name = \"Item\"\n");
                 }
 
-                MessageBox.Show(output.ToString());
+                OutPut = output.ToString(); 
+
+                var propbox = new Form1();
+
+                propbox.Controls["richTextBox1"].Text = output.ToString();
+                
+                propbox.Show();
+
+                //MessageBox.Show(output.ToString());
             } 
             return 0;
-        } 
+        }
+
+        private void OnClick(string output)
+        {
+            
+        }
     }
    #endregion 
 

@@ -57,8 +57,13 @@ namespace Lab_Properties
         public static string OutPut { get; set; }
 
         public override int Execute(params string[] parameters)
-        {                 
-            Document oDoc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+        {
+            #region MyRegion internal name and Display name 
+
+
+
+
+            /*Document oDoc = Autodesk.Navisworks.Api.Application.ActiveDocument;
                 
             if(oDoc.CurrentSelection.SelectedItems.Count >0)
             {
@@ -118,12 +123,77 @@ namespace Lab_Properties
 
                 //MessageBox.Show(output.ToString());
             } 
+            return 0;*/
+            #endregion
+
+            Document oDoc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+
+            if (oDoc.CurrentSelection.SelectedItems.Count > 0)
+            {
+                StringBuilder output = new StringBuilder();
+                output.Append("Dump Property Category of Current Selected Item\n");
+                //dump the first item only
+                ModelItem oItem = oDoc.CurrentSelection.SelectedItems[0];
+                foreach (PropertyCategory oPC in oItem.PropertyCategories)
+                {
+                    output.Append(" Display Name: " + oPC.DisplayName + "\n");
+                    output.Append("    Properties\n");
+                    foreach (DataProperty oDP in oPC.Properties)
+                    {
+                        output.Append("     [Display Name]: " + oDP.DisplayName  +"=>");
+                        if (oDP.Value.IsDisplayString)
+                        {
+                            output.Append("[Value]: " + oDP.Value.ToString() + "\n");
+                        }
+                        if (oDP.Value.IsDateTime)
+                        {
+                            output.Append("[Value]: " + oDP.Value.ToDateTime().ToShortTimeString() + "\n");
+                        }
+                        else
+                        {
+                            output.Append("<Other types of values>" + "\n");
+                        }
+                    }
+                }
+
+                
+
+                OutPut = output.ToString();
+
+                var propbox = new Form1();
+
+                propbox.Controls["richTextBox1"].Text = output.ToString();
+
+                propbox.Show();
+
+                //MessageBox.Show(output.ToString());
+            }
             return 0;
         }
 
-        private void OnClick(string output)
+        internal string FindPropertyByDisplayName(ModelItem modelItem,string displayName)
         {
-            
+            StringBuilder output = new StringBuilder();
+            //find specific category:
+            PropertyCategory oPC_Item = modelItem.PropertyCategories.FindCategoryByDisplayName("Item");
+            if (oPC_Item != null)
+            {
+                output.Append("Found a category by display name = \"Item\" Properties Count: " + oPC_Item.Properties.Count + "\n");
+                DataProperty oDP_Layer = modelItem.PropertyCategories.FindPropertyByDisplayName("Item", "Layer");
+                if (oPC_Item != null)
+                {
+                    output.Append("Found a data property by display name = \"Item,Layer\" Value: " + oDP_Layer.Value.ToDisplayString() + "\n");
+                }
+                else
+                {
+                    output.Append("Cannot find a data property by display name = \"Item,Layer\"\n");
+                }
+            }
+            else
+            {
+                output.Append("Cannot find a category by display name = \"Item\"\n");
+            }
+            return output.ToString();
         }
     }
    #endregion 

@@ -12,7 +12,7 @@ namespace Lab_Properties
 {
     internal class AssistantFuncs
     {
-        internal static bool SetParameterValue(ModelItem item, string NewCategory, string NewAttribute, dynamic NewValue)
+        public static bool SetParameterValue(ModelItem item, string NewCategory, string NewAttribute, dynamic NewValue)
         {
             try
             {
@@ -89,6 +89,52 @@ namespace Lab_Properties
                 MessageBox.Show(ex.Message);
                 return false;
             }
+        }
+
+
+        public static string FindPropertyByDisplayName(ModelItem modelItem, string catDisplayName, string propDisplayName)
+        {
+            StringBuilder output = new StringBuilder();
+            //find specific category:
+            PropertyCategory oPC_Item = modelItem.PropertyCategories.FindCategoryByDisplayName(catDisplayName);
+            if (oPC_Item != null)
+            {
+                output.Append($"Found a category by display name = \"{catDisplayName}\" Properties Count: " + oPC_Item.Properties.Count + "\n");
+                DataProperty oDP_Layer = modelItem.PropertyCategories.FindPropertyByDisplayName(catDisplayName, propDisplayName);
+                if (oPC_Item != null)
+                {
+                    output.Append($"Found a data property by display name = \"{propDisplayName}\" Value: " + oDP_Layer.Value.ToDisplayString() + "\n");
+                }
+                else
+                {
+                    output.Append($"Cannot find a data property by display name = \"{propDisplayName}\" in the propCatigury by displayname = {catDisplayName}\n");
+                }
+            }
+            else
+            {
+                output.Append("Cannot find a category by display name = \"Item\"\n");
+            }
+            return output.ToString();
+        }
+
+        public static string FindPropertyByDisplayName(ModelItem modelItem, string propDisplayName)
+        {
+            StringBuilder output = new StringBuilder();
+            //find specific category:
+            foreach (var category in modelItem.PropertyCategories)
+            {
+                DataProperty oDP_Layer = modelItem.PropertyCategories.FindPropertyByDisplayName(category.DisplayName,propDisplayName);
+                if (oDP_Layer != null)
+                {
+                    output.Append($"Found a data property by display name = \"{propDisplayName}\" Value: " + oDP_Layer.Value.ToDisplayString() + "\n");
+                }
+                else
+                {
+                    output.Append($"Cannot find a data property by display name = \"{propDisplayName}\" in the propCatigury by displayname = {catDisplayName}\n");
+                }
+            }
+            
+            return output.ToString();
         }
 
 

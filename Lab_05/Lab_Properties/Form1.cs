@@ -34,7 +34,7 @@ namespace Lab_Properties
         private void Find_Click(object sender, EventArgs e)
         {
             var output = new StringBuilder();
-            if (string.IsNullOrEmpty(this.CatDisplayNameTextBox.Text) && string.IsNullOrEmpty(this.PropDisplayNameTextBox.Text))
+            if (string.IsNullOrEmpty(this.PropDisplayNameTextBox.Text))
             {
                  MessageBox.Show("please at least fill the prop displayname");
                  return;

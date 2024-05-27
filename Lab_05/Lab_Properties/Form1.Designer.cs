@@ -136,7 +136,7 @@
             this.GreenButton.TabIndex = 3;
             this.GreenButton.Text = "Green Elements";
             this.GreenButton.UseVisualStyleBackColor = true;
-            this.GreenButton.Click += new System.EventHandler(this.Find_Click);
+            this.GreenButton.Click += new System.EventHandler(this.GreenButton_Click);
             // 
             // SelectElemetnsButton
             // 

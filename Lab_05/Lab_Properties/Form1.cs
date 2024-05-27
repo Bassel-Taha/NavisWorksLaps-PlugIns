@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Color = Autodesk.Navisworks.Api.Color;
 
 namespace Lab_Properties
 {
@@ -72,6 +73,11 @@ namespace Lab_Properties
                 AssistantFuncs.SelectElementsByProp(this.CatDisplayNameTextBox.Text, this.PropDisplayNameTextBox.Text,
                     this.PropValueTextBox.Text);
             }
+        }
+
+        private void GreenButton_Click(object sender, EventArgs e)
+        {
+            Autodesk.Navisworks.Api.Application.ActiveDocument.Models.OverrideTemporaryColor(AssistantFuncs.SelectedItems , Color.Green);
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)

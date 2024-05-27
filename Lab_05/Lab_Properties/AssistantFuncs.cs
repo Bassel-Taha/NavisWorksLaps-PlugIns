@@ -13,6 +13,10 @@ namespace Lab_Properties
 {
     internal class AssistantFuncs
     {
+        //prop for the selected items 
+        public static ModelItemCollection SelectedItems { get; set; }
+
+
         public static bool SetParameterValue(ModelItem item, string NewCategory, string NewAttribute, dynamic NewValue)
         {
             try
@@ -165,6 +169,7 @@ namespace Lab_Properties
                 search.SearchConditions.Add(SearchCondition.HasPropertyByDisplayName(catDisplayName, propDisplayName).EqualValue(VariantData.FromDisplayString(PropValue)));
                 var itemsCollection = search.FindAll(Autodesk.Navisworks.Api.Application.ActiveDocument, false);
                 doc.CurrentSelection.CopyFrom(itemsCollection);
+                SelectedItems = itemsCollection;
             }
             catch (Exception e)
             {

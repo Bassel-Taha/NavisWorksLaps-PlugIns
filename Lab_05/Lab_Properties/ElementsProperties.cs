@@ -41,16 +41,16 @@ using Autodesk.Navisworks.Api.Plugins;
 
 
 namespace Lab_Properties
-{    
+{
     #region "Properties"
-        [PluginAttribute("Element's Properties",
-                        //Plugin name
-                        "ADSK",
-                        //Developer ID or GUID
-                        ToolTip = "Element's Properties",
-                        //The tooltip for the item in the ribbon
-                       DisplayName = "Element's Properties")]
-                        //Display name for the Plugin in the Ribbon
+    [PluginAttribute("Element's Properties",
+                    //Plugin name
+                    "ADSK",
+                    //Developer ID or GUID
+                    ToolTip = "Element's Properties",
+                   //The tooltip for the item in the ribbon
+                   DisplayName = "Element's Properties")]
+    //Display name for the Plugin in the Ribbon
     public class ElementsProperties : AddInPlugin
     {
         //prop to send the output to the form
@@ -58,6 +58,8 @@ namespace Lab_Properties
 
         //the selected modelItem
         public static ModelItem SelectedModelItem { get; set; }
+
+        public static Form1 propbox { get; set; }
 
         public override int Execute(params string[] parameters)
         {
@@ -129,14 +131,29 @@ namespace Lab_Properties
             return 0;*/
             #endregion
 
-            Document oDoc = Autodesk.Navisworks.Api.Application.ActiveDocument;
 
-            if (oDoc.CurrentSelection.SelectedItems.Count > 0)
+            //the business logic IN the function for iteration when ever needed
+            ExcutionFunction();
+
+
+            propbox.Show();
+
+            //MessageBox.Show(output.ToString());
+
+            return 0;
+        }
+
+
+        public static void ExcutionFunction()
+        {
+            Document oDoc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+            StringBuilder output = new StringBuilder();
+            output.Append("Dump Property Category of Current Selected Item\n");
+            if (oDoc.CurrentSelection.SelectedItems.Count >0 )
             {
-                StringBuilder output = new StringBuilder();
-                output.Append("Dump Property Category of Current Selected Item\n");
                 //dump the first item only
                 ModelItem oItem = oDoc.CurrentSelection.SelectedItems[0];
+            
                 SelectedModelItem = oItem;
                 foreach (PropertyCategory oPC in oItem.PropertyCategories)
                 {
@@ -144,7 +161,7 @@ namespace Lab_Properties
                     output.Append("    Properties\n");
                     foreach (DataProperty oDP in oPC.Properties)
                     {
-                        output.Append("     [Display Name]: " + oDP.DisplayName  +"  =>  ");
+                        output.Append("     [Display Name]: " + oDP.DisplayName + "  =>  ");
                         if (oDP.Value.IsDisplayString)
                         {
                             output.Append("[Value]: " + oDP.Value.ToString() + "\n");
@@ -157,26 +174,16 @@ namespace Lab_Properties
                         {
                             output.Append("<Other types of values>" + "\n");
                         }
+
                     }
                 }
-
-                
-
-                OutPut = output.ToString();
-
-                var propbox = new Form1();
-
-                propbox.Controls["PropsText"].Text = output.ToString();
-
-                propbox.Show();
-
-                //MessageBox.Show(output.ToString());
             }
-            return 0;
+            OutPut = output.ToString();
+            propbox = new Form1();
+            propbox.Controls["PropsText"].Text = OutPut;
         }
-
     }
-   #endregion 
+    #endregion
 
-   
+
 }

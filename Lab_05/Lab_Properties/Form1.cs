@@ -31,6 +31,13 @@ namespace Lab_Properties
 
         }
 
+        private void Refresh_Click(object sender, EventArgs e)
+        {
+           ElementsProperties.ExcutionFunction();
+           this.PropsText.Text = ElementsProperties.OutPut;
+
+        }
+
         private void Find_Click(object sender, EventArgs e)
         {
             var output = new StringBuilder();
@@ -54,6 +61,19 @@ namespace Lab_Properties
 
         }
 
+        private void SelectItems_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(this.PropDisplayNameTextBox.Text) && string.IsNullOrEmpty(this.CatDisplayNameTextBox.Text))
+            {
+                MessageBox.Show("please input the Category displayname and the property displayname");
+            }
+            else
+            {
+                AssistantFuncs.SelectElementsByProp(this.CatDisplayNameTextBox.Text, this.PropDisplayNameTextBox.Text,
+                    this.PropValueTextBox.Text);
+            }
+        }
+
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -69,6 +89,9 @@ namespace Lab_Properties
             
         }
 
-        
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

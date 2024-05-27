@@ -155,6 +155,25 @@ namespace Lab_Properties
             MessageBox.Show("the Properties is exported succesfully on the disktop");
         }
 
+        public static void SelectElementsByProp(string catDisplayName, string propDisplayName, string PropValue)
+        {
+            var doc = Autodesk.Navisworks.Api.Application.ActiveDocument;
+            try
+            {
+                var search = new Search();
+                search.Selection.SelectAll();
+                search.SearchConditions.Add(SearchCondition.HasPropertyByDisplayName(catDisplayName, propDisplayName).EqualValue(VariantData.FromDisplayString(PropValue)));
+                var itemsCollection = search.FindAll(Autodesk.Navisworks.Api.Application.ActiveDocument, false);
+                doc.CurrentSelection.CopyFrom(itemsCollection);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            
+           
+        }
+
 
     }
 }

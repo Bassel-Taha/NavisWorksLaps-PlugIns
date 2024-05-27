@@ -125,12 +125,21 @@ namespace Lab_Properties
             //find specific category:
             foreach (var category in modelItem.PropertyCategories)
             {
-                DataProperty oDP_Layer = modelItem.PropertyCategories.FindPropertyByDisplayName(category.DisplayName,propDisplayName);
-                if (oDP_Layer != null)
+                try
                 {
-                    output.Append($"Found a data property by display name = \"{propDisplayName}\" Value: " + oDP_Layer.Value.ToDisplayString() + "\n");
-                    return output.ToString();
+                    DataProperty oDP_Layer = modelItem.PropertyCategories.FindPropertyByDisplayName(category.DisplayName, propDisplayName);
+                    if (oDP_Layer != null)
+                    {
+                        
+                        output.Append($"Found a data property by display name = \"{propDisplayName}\" " + $"in the Category called \"{category.DisplayName}\" " + " Value: " + oDP_Layer.Value.ToDisplayString() + "\n");
+                        return output.ToString();
+                    }
                 }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message); 
+                }
+                
             }
 
             return output.Append(

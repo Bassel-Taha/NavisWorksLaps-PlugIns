@@ -297,7 +297,11 @@ namespace Lab_Model
                     doc.Models.OverridePermanentTransform(coll, oNewOverrideTrans, true);
             }  
 
-        } 
-               
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
     }
 }

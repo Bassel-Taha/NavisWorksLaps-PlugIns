@@ -20,7 +20,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>5</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,19 +33,19 @@
   <ItemGroup>
     <Reference Include="Autodesk.Navisworks.Api, Version=13.0.1237.8, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Navisworks Manage 2024\Autodesk.Navisworks.Api.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Navisworks Manage 2023\Autodesk.Navisworks.Api.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Navisworks.ComApi, Version=13.0.1237.8, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Navisworks Manage 2024\Autodesk.Navisworks.ComApi.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Navisworks Manage 2023\Autodesk.Navisworks.ComApi.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Navisworks.Interop.ComApi, Version=13.0.1237.8, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Navisworks Manage 2024\Autodesk.Navisworks.Interop.ComApi.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Navisworks Manage 2023\Autodesk.Navisworks.Interop.ComApi.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Navisworks.Interop.ComApiAutomation">
-      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Navisworks Manage 2024\Autodesk.Navisworks.Interop.ComApiAutomation.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Navisworks Manage 2023\Autodesk.Navisworks.Interop.ComApiAutomation.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
@@ -82,9 +82,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>IF EXIST "C:\Program Files\Autodesk\Navisworks Manage 2024\Plugins\$(TargetName)\" rmdir /S /Q "C:\Program Files\Autodesk\Navisworks Manage 2024\Plugins\$(TargetName)\"
+    <PostBuildEvent>IF EXIST "C:\Program Files\Autodesk\Navisworks Manage 2023\Plugins\$(TargetName)\" rmdir /S /Q "C:\Program Files\Autodesk\Navisworks Manage 2023\Plugins\$(TargetName)\"
 
-xcopy /Y "$(TargetDir)*.*" "C:\Program Files\Autodesk\Navisworks Manage 2024\Plugins\$(TargetName)\"</PostBuildEvent>
+xcopy /Y "$(TargetDir)*.*" "C:\Program Files\Autodesk\Navisworks Manage 2023\Plugins\$(TargetName)\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
